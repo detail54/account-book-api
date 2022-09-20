@@ -1,0 +1,25 @@
+{
+  "extends": [
+    "airbnb",
+    "airbnb-typescript",
+    "prettier",
+    "airbnb-typescript/base",
+    "plugin:prettier/recommended"
+  ],
+  "plugins": ["prettier", "@typescript-eslint"], // 해당 플러그인을 사용할것이라고 등록
+  "env": {
+    "browser": true,
+    "es6": true,
+    "jest": true
+  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 2021,
+    "sourceType": "module", // import 사용
+    "project": "./tsconfig.json"
+  },
+  "rules": {
+    "import/prefer-default-export": "off", // import, export rules 비활성화
+    "prettier/prettier": ["error", { "endOfLine": "auto" }]
+  }
+}
