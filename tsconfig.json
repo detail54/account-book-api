@@ -6,17 +6,17 @@
     "skipLibCheck": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
     "module": "CommonJS",
     "esModuleInterop": true,
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "incremental": true,
-    "baseUrl": "src",
-    "rootDir": "/", //루트 폴더
-    "sourceMap": true,
-    "outDir": "dist"
+    "baseUrl": "./",
+    "rootDir": "./src",
+    "outDir": "./dist"
+    // "sourceMap": true,
+    // "noEmit": true
   },
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules"]

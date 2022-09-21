@@ -1,14 +1,27 @@
-import express from 'express'
+import express, { Application } from 'express'
+import dotenv from 'dotenv'
+// router
+import UserRoutes from './core/routes/UserRoutes'
 
-const app = express()
-const port = 3001
+dotenv.config()
 
-app.get('/', (req, res) => {
-  res.send('hello')
-})
+export class App {
+  private app: Application
+  private port: number | string
 
-app.listen(port, () => {
-  console.log(`account-book api server listening on port: ${port}`)
-})
+  constructor() {
+    this.app = express()
+    this.port = process.env.PORT || 8080
+    this.routes()
+  }
 
-export default app
+  public listen(): void {
+    this.app.listen(this.port, () => {
+      console.info(`Server on ${this.port}`)
+    })
+  }
+
+  private routes(): void {
+    this.app.use('/users', UserRoutes)
+  }
+}
