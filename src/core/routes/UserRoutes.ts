@@ -1,12 +1,12 @@
 import { Router } from 'express'
+import UserController from '../../user/api/UserController'
 
 const router = Router()
+const controller = new UserController()
 
 router
   .route('/')
-  .get((req, res) => {
-    res.send('user hihi')
-  })
+  .get(controller.getList)
   .post((req, res) => {
     res.send('user post hihi')
   })
