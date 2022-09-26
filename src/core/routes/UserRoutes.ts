@@ -1,14 +1,20 @@
 import { Router } from 'express'
 import UserController from '../../user/api/UserController'
 
-const router = Router()
-const controller = new UserController()
+export default class UserRoutes {
+  public router = Router()
+  private controller = new UserController()
 
-router
-  .route('/')
-  .get(controller.getList)
-  .post((req, res) => {
-    res.send('user post hihi')
-  })
+  constructor() {
+    this.rootRouter()
+    this.idPathRouter()
+  }
 
-export default router
+  private rootRouter = () => {
+    this.router.route('/').get(this.controller.getList).post(this.controller.register)
+  }
+
+  private idPathRouter = () => {
+    this.router.route('/:id').get(this.controller.get)
+  }
+}

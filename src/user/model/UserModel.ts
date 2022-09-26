@@ -4,7 +4,7 @@ import UserDocument from './UserDocument'
 /**
  * User mongoose schema
  */
-class User extends Schema<UserDocument> {
+class UserSchema extends Schema<UserDocument> {
   constructor() {
     super({
       id: mongoose.Types.ObjectId,
@@ -21,4 +21,4 @@ class User extends Schema<UserDocument> {
 /**
  * User mongoose model
  */
-export default mongoose.model('User', new User())
+export default mongoose.model('User', new UserSchema())

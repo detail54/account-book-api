@@ -1,5 +1,5 @@
 import UserRepository from '../repository/UserRepository'
-import UserDocument from '../schema/UserDocument'
+import UserDto from '../dto/UserDto'
 
 /**
  * 사용자 조회 서비스
@@ -8,7 +8,7 @@ export default class UserRetireveService {
   /**
    * @returns 사용자 데이터 리스트
    */
-  public getList = async (): Promise<UserDocument[]> => {
+  public getList = async (): Promise<UserDto[]> => {
     return await UserRepository.find()
   }
 
@@ -16,7 +16,7 @@ export default class UserRetireveService {
    * @param userName 사용자 이름
    * @returns 사용자 데이터
    */
-  public get = async (userName: string): Promise<UserDocument | null> => {
-    return await UserRepository.findOne({ userName })
+  public get = async (id: string): Promise<UserDto | null> => {
+    return await UserRepository.findOne({ id })
   }
 }

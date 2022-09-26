@@ -13,11 +13,11 @@ export class App {
   private port: number | string
 
   constructor() {
-    this.app = express()
     this.port = process.env.PORT || 8080
-    this.routes()
     this.dbConn()
+    this.app = express()
     this.middleware()
+    this.routes()
   }
 
   public listen(): void {
@@ -26,15 +26,16 @@ export class App {
     })
   }
 
+  private middleware(): void {
+    this.app.use(helmet())
+    this.app.use(express.json())
+  }
+
   private routes(): void {
-    this.app.use('/users', UserRoutes)
+    this.app.use('/users', new UserRoutes().router)
   }
 
   private dbConn(): void {
     DBConnection.connection()
-  }
-
-  private middleware(): void {
-    this.app.use(helmet())
   }
 }
