@@ -1,10 +1,11 @@
 import express, { Application } from 'express'
 import dotenv from 'dotenv'
-// router
-import UserRoutes from './core/routes/UserRoutes'
 // DB 연결
 import DBConnection from './core/db/DBConnection'
 import helmet from 'helmet'
+// router
+import UserRoutes from './core/routes/UserRoutes'
+import StoreCategoryRoutes from './core/routes/StoreCategoryRoutes'
 
 dotenv.config()
 
@@ -33,6 +34,7 @@ export class App {
 
   private routes(): void {
     this.app.use('/users', new UserRoutes().router)
+    this.app.use('/store-categorys', new StoreCategoryRoutes().router)
   }
 
   private dbConn(): void {

@@ -1,7 +1,7 @@
 /**
  * 사용자 등록 dto
  */
-export default class UserRegisterDto {
+export default class UserRegistDto {
   public userName: string
 
   public password: string

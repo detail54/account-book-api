@@ -3,7 +3,7 @@ import _ from 'lodash'
 import httpStatus from 'http-status-codes'
 import UserChangeService from '../service/UserChangeService'
 import UserRetireveService from '../service/UserRetireveService'
-import UserRegisterDto from '../dto/UserRegisterDto'
+import UserRegistDto from '../dto/UserRegistDto'
 
 export default class UserController {
   private userRetireveService: UserRetireveService = new UserRetireveService()
@@ -70,7 +70,7 @@ export default class UserController {
    */
   public register = async (req: Request, res: Response, next: NextFunction): Promise<Response> => {
     try {
-      const user: UserRegisterDto = req.body
+      const user: UserRegistDto = req.body
       await this.userChangeService.register(user)
     } catch (e) {
       next()

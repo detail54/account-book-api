@@ -1,11 +1,10 @@
+import StoreCategoryRegistDto from '../dto/StoreCategoryRegistDto'
 import StoreCategoryRepository from '../repository/StoreCategoryRepository'
 
 export default class StoreCategoryChangeService {
-  public register = async (name: string) => {
+  public register = async (data: StoreCategoryRegistDto) => {
     await StoreCategoryRepository.create({
-      name,
-      stores: [],
-      accounts: [],
+      ...data,
     })
   }
 }

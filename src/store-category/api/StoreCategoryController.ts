@@ -3,6 +3,7 @@ import _ from 'lodash'
 import httpStatus from 'http-status-codes'
 import StoreCategoryChangeService from '../service/StoreCategoryChangeService'
 import StoreCategoryRetireveService from '../service/StoreCategoryRetireveService'
+import StoreCategoryRegistDto from '../dto/StoreCategoryRegistDto'
 
 export default class StoreCategoryController {
   private storeCategoryRetireveService: StoreCategoryRetireveService = new StoreCategoryRetireveService()
@@ -43,6 +44,19 @@ export default class StoreCategoryController {
       throw e
     }
 
+    return res
+  }
+
+  public register = async (req: Request, res: Response, next: NextFunction): Promise<Response> => {
+    try {
+      const storeCategory: StoreCategoryRegistDto = req.body
+      await this.storeCategoryChangeService.register(storeCategory)
+    } catch (e) {
+      next()
+      throw e
+    }
+
+    res.status(httpStatus.CREATED).send(httpStatus.getStatusText(res.statusCode))
     return res
   }
 }

@@ -1,4 +1,4 @@
-import UserRegisterDto from '../dto/UserRegisterDto'
+import UserRegistDto from '../dto/UserRegistDto'
 import UserRepository from '../repository/UserRepository'
 
 export default class UserChangeService {
@@ -6,7 +6,7 @@ export default class UserChangeService {
    *
    * @param newUser 유저 정보
    */
-  public register = async (newUser: UserRegisterDto): Promise<void> => {
+  public register = async (newUser: UserRegistDto): Promise<void> => {
     const date = new Date()
     await UserRepository.create({
       userName: newUser.userName,
