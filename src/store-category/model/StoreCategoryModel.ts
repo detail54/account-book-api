@@ -1,6 +1,10 @@
 import mongoose, { Schema } from 'mongoose'
+import StoreCategoryDocument from './StoreCategoryDocument'
 
-class StoreCategorySchema extends Schema {
+/**
+ * Store Category schema
+ */
+class StoreCategoryModel extends Schema<StoreCategoryDocument> {
   constructor() {
     super({
       id: mongoose.Types.ObjectId,
@@ -11,4 +15,7 @@ class StoreCategorySchema extends Schema {
   }
 }
 
-export default mongoose.model('StoreCategory', new StoreCategorySchema())
+/**
+ * Store Category model
+ */
+export default mongoose.model('StoreCategory', new StoreCategoryModel())

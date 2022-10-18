@@ -61,6 +61,13 @@ export default class UserController {
     return res
   }
 
+  /**
+   *
+   * @param req 요청
+   * @param res 응답
+   * @param next 다음 함수 호출
+   * @returns res 객체
+   */
   public register = async (req: Request, res: Response, next: NextFunction): Promise<Response> => {
     try {
       const user: UserRegisterDto = req.body
@@ -70,6 +77,7 @@ export default class UserController {
       throw e
     }
 
-    return res.status(httpStatus.CREATED).send(httpStatus.getStatusText(res.statusCode))
+    res.status(httpStatus.CREATED).send(httpStatus.getStatusText(res.statusCode))
+    return res
   }
 }
