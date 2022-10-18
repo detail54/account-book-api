@@ -62,7 +62,7 @@ export default class UserController {
   }
 
   /**
-   *
+   * -- 새 유저 등록 --
    * @param req 요청
    * @param res 응답
    * @param next 다음 함수 호출

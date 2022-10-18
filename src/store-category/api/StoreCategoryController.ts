@@ -9,6 +9,13 @@ export default class StoreCategoryController {
   private storeCategoryRetireveService: StoreCategoryRetireveService = new StoreCategoryRetireveService()
   private storeCategoryChangeService: StoreCategoryChangeService = new StoreCategoryChangeService()
 
+  /**
+   * -- 전체 카테고리 리스트 조회 --
+   * @param req 요청
+   * @param res 응답
+   * @param next 다음 함수 호출
+   * @returns res 객체
+   */
   public getList = async (req: Request, res: Response, next: NextFunction): Promise<Response> => {
     try {
       const storeCategoryList = await this.storeCategoryRetireveService.getList()
@@ -28,6 +35,13 @@ export default class StoreCategoryController {
     return res
   }
 
+  /**
+   * -- 특정 카테고리 조회 --
+   * @param req 요청
+   * @param res 응답
+   * @param next 다음 함수 호출
+   * @returns res 객체
+   */
   public get = async (req: Request, res: Response, next: NextFunction): Promise<Response> => {
     try {
       const storeCategory = await this.storeCategoryRetireveService.get(req.params.id)
@@ -47,6 +61,13 @@ export default class StoreCategoryController {
     return res
   }
 
+  /**
+   * -- 새 카테고리 등록 --
+   * @param req 요청
+   * @param res 응답
+   * @param next 다음 함수 호출
+   * @returns res 객체
+   */
   public register = async (req: Request, res: Response, next: NextFunction): Promise<Response> => {
     try {
       const storeCategory: StoreCategoryRegistDto = req.body
