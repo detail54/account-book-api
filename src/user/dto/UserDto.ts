@@ -2,7 +2,7 @@
  * 유저 정보 Dto
  */
 export default class UserDto {
-  public id: string
+  public _id: string
 
   public userName: string
 
@@ -27,7 +27,7 @@ export default class UserDto {
    * @param updateDt 사용자 정보 수정 날짜
    */
   constructor(id: string, userName: string, password: string, incomes: [], accounts: [], regDt: Date, updateDt: Date) {
-    this.id = id
+    this._id = id
     this.userName = userName
     this.password = password
     this.incomes = incomes

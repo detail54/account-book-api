@@ -44,7 +44,7 @@ export default class StoreCategoryController {
    */
   public get = async (req: Request, res: Response, next: NextFunction): Promise<Response> => {
     try {
-      const storeCategory = await this.storeCategoryRetireveService.get(req.params.id)
+      const storeCategory = await this.storeCategoryRetireveService.get(req.params.name)
 
       if (_.isEmpty(storeCategory)) {
         res.status(httpStatus.NO_CONTENT)

@@ -1,9 +1,9 @@
 import { Router } from 'express'
-import StoreCategoryController from '../../store-category/api/StoreCategoryController'
+import StoreController from '../../store/api/StoreController'
 
-export default class StoreCategoryRoutes {
+export default class StoreRoutes {
   public router = Router()
-  private controller = new StoreCategoryController()
+  private controller = new StoreController()
 
   constructor() {
     this.rootRouter()

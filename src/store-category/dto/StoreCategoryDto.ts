@@ -1,12 +1,14 @@
+import StoreDto from 'src/store/dto/StoreDto'
+
 /**
  * 가맹점 분류할 카테고리 Dto
  */
 export default class StoreCategoryDto {
-  public id: string
+  public _id: string
 
   public name: string
 
-  public stores: []
+  public stores: StoreDto[]
 
   public accounts: []
 
@@ -18,7 +20,7 @@ export default class StoreCategoryDto {
    * @param accounts 카테고리의 지출내역 리스트
    */
   constructor(id: string, name: string, stores: [], accounts: []) {
-    this.id = id
+    this._id = id
     this.name = name
     this.stores = stores
     this.accounts = accounts

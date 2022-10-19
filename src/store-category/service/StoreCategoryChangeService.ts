@@ -1,3 +1,4 @@
+import StoreCategoryDto from '../dto/StoreCategoryDto'
 import StoreCategoryRegistDto from '../dto/StoreCategoryRegistDto'
 import StoreCategoryRepository from '../repository/StoreCategoryRepository'
 
@@ -10,5 +11,10 @@ export default class StoreCategoryChangeService {
     await StoreCategoryRepository.create({
       ...newStoreCategory,
     })
+  }
+
+  public updater = async (updateStoreCategory: StoreCategoryDto) => {
+    const id = updateStoreCategory._id
+    await StoreCategoryRepository.findByIdAndUpdate(id, { ...updateStoreCategory })
   }
 }

@@ -14,8 +14,8 @@ export default class StoreCategoryDocument extends Document {
 
   constructor(id: string, name: string, stores: [], accounts: []) {
     super()
-    this.id = id as String
-    this.name = name as String
+    this.id = id
+    this.name = name
     this.stores = stores
     this.accounts = accounts
   }
