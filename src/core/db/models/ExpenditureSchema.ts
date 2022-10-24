@@ -1,6 +1,6 @@
 import mongoose, { Schema } from 'mongoose'
 
-class AccountSchema extends Schema {
+class ExpenditureSchema extends Schema {
   constructor() {
     super({
       id: mongoose.Types.ObjectId,
@@ -16,4 +16,4 @@ class AccountSchema extends Schema {
   }
 }
 
-export default mongoose.model('Account', new AccountSchema())
+export default mongoose.model('Expenditure', new ExpenditureSchema())

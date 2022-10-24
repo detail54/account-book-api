@@ -7,7 +7,7 @@ class StoreSchema extends Schema<StoreDocument> {
       id: mongoose.Types.ObjectId,
       category: { type: mongoose.Types.ObjectId, ref: 'StoreCategory' },
       name: { type: String, required: true, unique: true },
-      accounts: [{ type: mongoose.Types.ObjectId, ref: 'accounts' }],
+      expenditures: [{ type: mongoose.Types.ObjectId, ref: 'Expenditures' }],
     })
   }
 }

@@ -11,7 +11,7 @@ class UserSchema extends Schema<UserDocument> {
       userName: { type: String, required: true, unique: true },
       password: { type: String, required: true, trim: true },
       incomes: [{ type: Schema.Types.ObjectId, ref: 'incomes' }],
-      accounts: [{ type: Schema.Types.ObjectId, ref: 'accounts' }],
+      expenditures: [{ type: Schema.Types.ObjectId, ref: 'Expenditures' }],
       regDt: { type: Date, default: Date.now },
       updateDt: { type: Date, default: Date.now },
     })

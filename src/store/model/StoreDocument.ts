@@ -8,13 +8,13 @@ export default class StoreDocument extends Document {
 
   public name: String
 
-  public accounts: []
+  public expenditures: []
 
-  constructor(id: string, category: StoreCategoryDto, name: string, accounts: []) {
+  constructor(id: string, category: StoreCategoryDto, name: string, expenditures: []) {
     super()
     this.id = id
     this.category = category
     this.name = name
-    this.accounts = accounts
+    this.expenditures = expenditures
   }
 }

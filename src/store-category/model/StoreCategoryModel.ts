@@ -10,7 +10,7 @@ class StoreCategorySchema extends Schema<StoreCategoryDocument> {
       id: mongoose.Types.ObjectId,
       name: { type: String, required: true, unique: true },
       stores: [{ type: mongoose.Types.ObjectId, ref: 'Store' }],
-      accounts: [{ type: mongoose.Types.ObjectId, ref: 'Account' }],
+      expenditures: [{ type: mongoose.Types.ObjectId, ref: 'Expenditures' }],
     })
   }
 }

@@ -10,13 +10,13 @@ export default class StoreCategoryDocument extends Document {
 
   public stores: []
 
-  public accounts: []
+  public expenditures: []
 
-  constructor(id: string, name: string, stores: [], accounts: []) {
+  constructor(id: string, name: string, stores: [], expenditures: []) {
     super()
     this.id = id
     this.name = name
     this.stores = stores
-    this.accounts = accounts
+    this.expenditures = expenditures
   }
 }

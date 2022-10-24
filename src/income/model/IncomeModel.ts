@@ -1,6 +1,7 @@
 import mongoose, { Schema } from 'mongoose'
+import IncomeDocument from './IncomeDocument'
 
-class IncomeSchema extends Schema {
+class IncomeSchema extends Schema<IncomeDocument> {
   constructor() {
     super({
       id: mongoose.Types.ObjectId,

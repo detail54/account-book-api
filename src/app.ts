@@ -7,6 +7,7 @@ import helmet from 'helmet'
 import UserRoutes from './core/routes/UserRoutes'
 import StoreCategoryRoutes from './core/routes/StoreCategoryRoutes'
 import StoreRoutes from './core/routes/StoreRoutes'
+import IncomeRoutes from './core/routes/IncomeRoutes'
 
 dotenv.config()
 
@@ -18,7 +19,6 @@ export class App {
     this.port = process.env.PORT || 8080
     this.dbConn()
     this.app = express()
-    this.app.set('base', '/api')
     this.middleware()
     this.routes()
   }
@@ -35,9 +35,10 @@ export class App {
   }
 
   private routes(): void {
-    this.app.use('/api/users', new UserRoutes().router)
-    this.app.use('/api/store-categorys', new StoreCategoryRoutes().router)
+    this.app.use('/api/user', new UserRoutes().router)
+    this.app.use('/api/store-category', new StoreCategoryRoutes().router)
     this.app.use('/api/store', new StoreRoutes().router)
+    this.app.use('/api/income', new IncomeRoutes().router)
   }
 
   private dbConn(): void {

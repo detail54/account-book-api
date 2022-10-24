@@ -6,7 +6,7 @@ export default class StoreChangeService {
    *
    * @param newStore 새 가맹점 데이터
    */
-  public register = async (newStore: StoreRegistDto) => {
+  public register = async (newStore: StoreRegistDto): Promise<void> => {
     await StoreRepository.create({
       ...newStore,
     })

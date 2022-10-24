@@ -10,7 +10,7 @@ export default class StoreCategoryDto {
 
   public stores: StoreDto[]
 
-  public accounts: []
+  public expenditures: []
 
   /**
    *
@@ -19,10 +19,10 @@ export default class StoreCategoryDto {
    * @param stores 카테고리에 등록된 가맹점 리스트
    * @param accounts 카테고리의 지출내역 리스트
    */
-  constructor(id: string, name: string, stores: [], accounts: []) {
+  constructor(id: string, name: string, stores: [], expenditures: []) {
     this._id = id
     this.name = name
     this.stores = stores
-    this.accounts = accounts
+    this.expenditures = expenditures
   }
 }

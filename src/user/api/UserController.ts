@@ -44,7 +44,7 @@ export default class UserController {
    */
   public get = async (req: Request, res: Response, next: NextFunction): Promise<Response> => {
     try {
-      const users = await this.userRetireveService.get(req.params.id)
+      const users = await this.userRetireveService.get(req.params.userName)
 
       if (_.isUndefined(users)) {
         res.status(httpStatus.NO_CONTENT)

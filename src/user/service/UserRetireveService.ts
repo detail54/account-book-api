@@ -13,10 +13,10 @@ export default class UserRetireveService {
   }
 
   /**
-   * @param _id 사용자 식별 id
+   * @param userName 사용자 id
    * @returns 사용자 데이터
    */
-  public get = async (_id: string): Promise<UserDto | null> => {
-    return await UserRepository.findOne({ _id })
+  public get = async (userName: string): Promise<UserDto | null> => {
+    return await UserRepository.findOne({ userName })
   }
 }

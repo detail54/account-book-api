@@ -12,19 +12,27 @@ export default class UserDocument extends Document {
 
   public incomes: []
 
-  public accounts: []
+  public expenditures: []
 
   public regDt: Date
 
   public updateDt: Date
 
-  constructor(id: string, userName: string, password: string, incomes: [], accounts: [], regDt: Date, updateDt: Date) {
+  constructor(
+    id: string,
+    userName: string,
+    password: string,
+    incomes: [],
+    expenditures: [],
+    regDt: Date,
+    updateDt: Date,
+  ) {
     super()
     this.id = id as String
     this.userName = userName as String
     this.password = password as String
     this.incomes = incomes
-    this.accounts = accounts
+    this.expenditures = expenditures
     this.regDt = regDt
     this.updateDt = updateDt
   }

@@ -1,3 +1,5 @@
+import IncomeDto from '../../income/dto/IncomeDto'
+
 /**
  * 유저 정보 Dto
  */
@@ -8,9 +10,9 @@ export default class UserDto {
 
   public password: string
 
-  public incomes: []
+  public incomes: IncomeDto[]
 
-  public accounts: []
+  public expenditures: []
 
   public regDt: Date
 
@@ -26,12 +28,20 @@ export default class UserDto {
    * @param regDt 사용자 가입 날짜
    * @param updateDt 사용자 정보 수정 날짜
    */
-  constructor(id: string, userName: string, password: string, incomes: [], accounts: [], regDt: Date, updateDt: Date) {
+  constructor(
+    id: string,
+    userName: string,
+    password: string,
+    incomes: [],
+    expenditures: [],
+    regDt: Date,
+    updateDt: Date,
+  ) {
     this._id = id
     this.userName = userName
     this.password = password
     this.incomes = incomes
-    this.accounts = accounts
+    this.expenditures = expenditures
     this.regDt = regDt
     this.updateDt = updateDt
   }
