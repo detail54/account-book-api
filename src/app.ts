@@ -8,6 +8,7 @@ import UserRoutes from './core/routes/UserRoutes'
 import StoreCategoryRoutes from './core/routes/StoreCategoryRoutes'
 import StoreRoutes from './core/routes/StoreRoutes'
 import IncomeRoutes from './core/routes/IncomeRoutes'
+import ExpenditureRoutes from './core/routes/ExpenditureRoutes'
 
 dotenv.config()
 
@@ -39,6 +40,7 @@ export class App {
     this.app.use('/api/store-category', new StoreCategoryRoutes().router)
     this.app.use('/api/store', new StoreRoutes().router)
     this.app.use('/api/income', new IncomeRoutes().router)
+    this.app.use('/api/expenditure', new ExpenditureRoutes().router)
   }
 
   private dbConn(): void {

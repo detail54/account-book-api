@@ -6,9 +6,9 @@ import StoreCategoryDto from 'src/store-category/dto/StoreCategoryDto'
 export default class StoreRegistDto {
   public name: string
 
-  public categoryName: string
+  public categoryName?: string
 
-  public category?: StoreCategoryDto
+  public category: StoreCategoryDto
 
   /**
    *

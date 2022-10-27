@@ -1,7 +1,7 @@
 import UserDto from '../../user/dto/UserDto'
 
 export default class IncomeDto {
-  public id: string
+  public _id: string
 
   public user: UserDto
 
@@ -16,7 +16,7 @@ export default class IncomeDto {
   public memo: string
 
   constructor(id: string, user: UserDto, regDt: Date, updateDt: Date, incomeDt: Date, amount: number, memo: string) {
-    this.id = id
+    this._id = id
     this.user = user
     this.regDt = regDt
     this.updateDt = updateDt

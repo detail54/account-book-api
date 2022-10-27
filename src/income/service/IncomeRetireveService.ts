@@ -4,6 +4,6 @@ import IncomeRepository from '../repository/IncomeRepository'
 
 export default class IncomeRetireveService {
   public getList = async (user: UserDto): Promise<IncomeDto[]> => {
-    return await IncomeRepository.find({ user: user })
+    return await IncomeRepository.find({ user })
   }
 }

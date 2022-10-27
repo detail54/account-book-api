@@ -1,3 +1,4 @@
+import ExpenditureDto from 'src/expenditure/dto/ExpenditureDto'
 import IncomeDto from '../../income/dto/IncomeDto'
 
 /**
@@ -12,7 +13,7 @@ export default class UserDto {
 
   public incomes: IncomeDto[]
 
-  public expenditures: []
+  public expenditures: ExpenditureDto[]
 
   public regDt: Date
 
@@ -32,8 +33,8 @@ export default class UserDto {
     id: string,
     userName: string,
     password: string,
-    incomes: [],
-    expenditures: [],
+    incomes: IncomeDto[],
+    expenditures: ExpenditureDto[],
     regDt: Date,
     updateDt: Date,
   ) {
