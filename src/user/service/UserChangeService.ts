@@ -1,3 +1,4 @@
+import EncryptPW from '../../core/utils/EncryptPW'
 import UserDto from '../dto/UserDto'
 import UserRegistDto from '../dto/UserRegistDto'
 import UserRepository from '../repository/UserRepository'
@@ -9,9 +10,11 @@ export default class UserChangeService {
    */
   public register = async (newUser: UserRegistDto): Promise<void> => {
     const date = new Date()
+    const password = await new EncryptPW(newUser.password).getEncryptPw()
+
     await UserRepository.create({
       userName: newUser.userName,
-      password: newUser.password,
+      password,
       incomes: [],
       accounts: [],
       regDt: date,

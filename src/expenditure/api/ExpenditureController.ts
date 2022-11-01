@@ -1,12 +1,11 @@
 import { NextFunction, Request, Response } from 'express'
 import _ from 'lodash'
 import httpStatus from 'http-status-codes'
+import MESSAGE from '../../core/constant/MESSAGE'
 import ExpenditureRetireveService from '../service/ExpenditureRetireveService'
 import ExpenditureChangeService from '../service/ExpenditureChangeService'
 import UserRetireveService from '../../user/service/UserRetireveService'
 import UserChangeService from '../../user/service/UserChangeService'
-import MESSAGE from '../../core/constant/MESSAGE'
-import ExpenditureRegistDto from '../dto/ExpenditureRegistDto'
 import StoreCategoryChangeService from '../../store-category/service/StoreCategoryChangeService'
 import StoreCategoryRetireveService from '../../store-category/service/StoreCategoryRetireveService'
 import StoreChangeService from '../../store/service/StoreChangeService'
@@ -80,16 +79,14 @@ export default class ExpenditureController {
             await this.storeCategoryChangeService.updater(category)
           }
 
-          const registExpenditureData: ExpenditureRegistDto = {
+          await this.expenditureChangeService.register({
             user,
-            paymentDt: req.body.paymentDt,
             category,
             store,
+            paymentDt: req.body.paymentDt,
             amount: req.body.amount,
             memo: req.body.memo,
-          }
-
-          await this.expenditureChangeService.register(registExpenditureData)
+          })
 
           const expenditure = await this.expenditureRetireveService.get(user, store, req.body.paymentDt)
 
