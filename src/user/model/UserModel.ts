@@ -10,6 +10,8 @@ class UserSchema extends Schema<UserDocument> {
       id: mongoose.Types.ObjectId,
       userName: { type: String, required: true, unique: true },
       password: { type: String, required: true, trim: true },
+      salt: { type: String, required: true, trim: true },
+      keyCount: { type: String, required: true, trim: true },
       incomes: [{ type: Schema.Types.ObjectId, ref: 'incomes' }],
       expenditures: [{ type: Schema.Types.ObjectId, ref: 'Expenditures' }],
       regDt: { type: Date, default: Date.now },

@@ -10,11 +10,18 @@ export default class UserChangeService {
    */
   public register = async (newUser: UserRegistDto): Promise<void> => {
     const date = new Date()
-    const password = await new EncryptPW(newUser.password).getEncryptPw()
+    const count = `${Math.floor(Math.random() * 9) + 1}${Math.floor(Math.random() * 9) + 1}`
+    const encrypt = new EncryptPW(newUser.password, count)
+    await encrypt.base64crypto()
+
+    const salt = await encrypt.getSalt()
+    const encryptPW = await encrypt.getEncryptPw()
 
     await UserRepository.create({
       userName: newUser.userName,
-      password,
+      password: encryptPW,
+      salt,
+      keyCount: count,
       incomes: [],
       accounts: [],
       regDt: date,
