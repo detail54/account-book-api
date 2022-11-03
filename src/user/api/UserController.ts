@@ -4,10 +4,13 @@ import httpStatus from 'http-status-codes'
 import UserChangeService from '../service/UserChangeService'
 import UserRetireveService from '../service/UserRetireveService'
 import UserRegistDto from '../dto/UserRegistDto'
+import UserTokenService from '../service/UserTokenService'
+import UserSignInDto from '../dto/UserSignInDto'
 
 export default class UserController {
   private userRetireveService: UserRetireveService = new UserRetireveService()
   private userChangeService: UserChangeService = new UserChangeService()
+  private userTokenService: UserTokenService = new UserTokenService()
 
   /**
    * -- 전체 사용자 리스트 조회 --
@@ -78,6 +81,27 @@ export default class UserController {
     }
 
     res.status(httpStatus.CREATED).send(httpStatus.getStatusText(res.statusCode))
+    return res
+  }
+
+  public signIn = async (req: Request, res: Response, next: NextFunction): Promise<Response> => {
+    try {
+      const userInfo: UserSignInDto = req.body
+      const token = await this.userTokenService.getJwtToken(userInfo)
+
+      if (!token) {
+        res.status(httpStatus.NO_CONTENT)
+      } else {
+        res.status(httpStatus.OK)
+        res.header('Access-Token', token)
+      }
+
+      res.send(token)
+    } catch (e) {
+      next()
+      throw e
+    }
+
     return res
   }
 }

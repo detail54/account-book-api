@@ -1,10 +1,12 @@
 import { Document } from 'mongoose'
+import ExpenditureDto from 'src/expenditure/dto/ExpenditureDto'
+import IncomeDto from 'src/income/dto/IncomeDto'
 
 /**
  * User schema document
  */
 export default class UserDocument extends Document {
-  public id: String
+  public _id: String
 
   public userName: String
 
@@ -14,9 +16,9 @@ export default class UserDocument extends Document {
 
   public keyCount: String
 
-  public incomes: []
+  public incomes: IncomeDto[]
 
-  public expenditures: []
+  public expenditures: ExpenditureDto[]
 
   public regDt: Date
 
@@ -34,7 +36,7 @@ export default class UserDocument extends Document {
     updateDt: Date,
   ) {
     super()
-    this.id = id
+    this._id = id
     this.userName = userName
     this.password = password
     this.salt = salt

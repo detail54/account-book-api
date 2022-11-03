@@ -1,4 +1,6 @@
 import { Document } from 'mongoose'
+import ExpenditureDto from 'src/expenditure/dto/ExpenditureDto'
+import StoreDto from 'src/store/dto/StoreDto'
 
 /**
  * Store Category schema document
@@ -8,9 +10,9 @@ export default class StoreCategoryDocument extends Document {
 
   public name: String
 
-  public stores: []
+  public stores: StoreDto[]
 
-  public expenditures: []
+  public expenditures: ExpenditureDto[]
 
   constructor(id: string, name: string, stores: [], expenditures: []) {
     super()

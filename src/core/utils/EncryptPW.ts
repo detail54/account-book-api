@@ -32,7 +32,7 @@ export default class EncryptPW {
   }
 
   private getCreatedSalt = async (): Promise<string> => {
-    return Promise.resolve(crypto.randomBytes(64).toString('base64'))
+    return crypto.randomBytes(64).toString('base64')
   }
 
   private getEncryptedSalt = async (counts: number[], salt: string): Promise<string> => {
@@ -45,14 +45,14 @@ export default class EncryptPW {
 
     const nextEncryptSalt = slicedSalt1 + count1 + slicedSalt2 + count2 + slicedSalt3
 
-    return Promise.resolve(nextEncryptSalt)
+    return nextEncryptSalt
   }
 
   public getEncryptPw = async (): Promise<string | undefined> => {
-    return Promise.resolve(this.encryptPW)
+    return this.encryptPW
   }
 
   public getSalt = async (): Promise<string | undefined> => {
-    return Promise.resolve(this.salt)
+    return this.salt
   }
 }

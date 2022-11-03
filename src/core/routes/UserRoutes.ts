@@ -8,6 +8,7 @@ export default class UserRoutes {
   constructor() {
     this.rootRouter()
     this.idPathRouter()
+    this.signInRouter()
   }
 
   private rootRouter = () => {
@@ -16,5 +17,9 @@ export default class UserRoutes {
 
   private idPathRouter = () => {
     this.router.route('/:id').get(this.controller.get)
+  }
+
+  private signInRouter = () => {
+    this.router.route('/signin').post(this.controller.signIn)
   }
 }
