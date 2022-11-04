@@ -27,8 +27,8 @@ export default class EncryptPW {
     const encryptedSalt = await this.getEncryptedSalt([count1, count2], this.salt)
     const roofCount = count1 * count2 + count1 + count2
 
-    const onceEncryptedPW = crypto.pbkdf2Sync(this.password, encryptedSalt, count1, 64, 'sha256').toString('base64')
-    this.encryptPW = crypto.pbkdf2Sync(onceEncryptedPW, encryptedSalt, roofCount, 64, 'sha256').toString('base64')
+    const onceEncryptedPW = crypto.pbkdf2Sync(this.password, encryptedSalt, count1, 64, 'sha512').toString('base64')
+    this.encryptPW = crypto.pbkdf2Sync(onceEncryptedPW, encryptedSalt, roofCount, 64, 'sha512').toString('base64')
   }
 
   private getCreatedSalt = async (): Promise<string> => {
@@ -37,7 +37,7 @@ export default class EncryptPW {
 
   private getEncryptedSalt = async (counts: number[], salt: string): Promise<string> => {
     const [count1, count2] = counts
-    const encryptedSalt = crypto.pbkdf2Sync(salt, `${count1}${count2}`, count1, 64, 'sha256').toString('base64')
+    const encryptedSalt = crypto.pbkdf2Sync(salt, `${count1}${count2}`, count1, 64, 'sha512').toString('base64')
 
     const slicedSalt1 = encryptedSalt.substring(0, 3)
     const slicedSalt2 = encryptedSalt.substring(3, count1)

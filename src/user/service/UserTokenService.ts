@@ -1,16 +1,15 @@
 import EncryptPW from '../../core/utils/EncryptPW'
-import UserDto from '../dto/UserDto'
 import UserSignInDto from '../dto/UserSignInDto'
 import UserTokenDto from '../dto/UserTokenDto'
 import UserRepository from '../repository/UserRepository'
-import jwt from 'jsonwebtoken'
+import JWToken, { JWTDto } from '../../core/utils/JWToken'
 
 export default class UserTokenService {
   /**
    * @param user 로그인 유저 id, pw
    * @returns 로그인 토큰
    */
-  public getJwtToken = async (user: UserSignInDto): Promise<string | undefined> => {
+  public signIn = async (user: UserSignInDto): Promise<JWTDto | undefined> => {
     const retireveUser = await UserRepository.findOne({ userName: user.userName })
     if (retireveUser) {
       const encrypt = new EncryptPW(user.password, retireveUser.keyCount.toString(), retireveUser.salt.toString())
@@ -26,17 +25,12 @@ export default class UserTokenService {
           regDt: retireveUser.regDt,
         }
 
-        const secretKey = process.env.ACCESS_TOKEN_SECRET!
-        const jwtToken = jwt.sign(tokenUserInfo, secretKey, {
-          expiresIn: '15m',
-        })
+        const token = new JWToken()
+        const accessToken = await token.createAccessToken(tokenUserInfo)
+        const refreshToken = await token.createRefreshToken()
 
-        return jwtToken
+        return new JWTDto(accessToken, refreshToken)
       }
     }
-  }
-
-  public refreshToken = async (user: UserDto, token: string): Promise<string | undefined> => {
-    return ''
   }
 }

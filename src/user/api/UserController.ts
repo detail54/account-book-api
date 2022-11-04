@@ -84,19 +84,26 @@ export default class UserController {
     return res
   }
 
+  /**
+   * -- 로그인(토큰발급) --
+   * @param req
+   * @param res
+   * @param next
+   * @returns
+   */
   public signIn = async (req: Request, res: Response, next: NextFunction): Promise<Response> => {
     try {
       const userInfo: UserSignInDto = req.body
-      const token = await this.userTokenService.getJwtToken(userInfo)
+      const token = await this.userTokenService.signIn(userInfo)
 
       if (!token) {
-        res.status(httpStatus.NO_CONTENT)
+        res.status(httpStatus.NON_AUTHORITATIVE_INFORMATION)
+        res.send()
       } else {
         res.status(httpStatus.OK)
-        res.header('Access-Token', token)
+        res.header('Set-Cookie', `Refresh-Token=${token.refreshToken}; HttpOnly`)
+        res.send(token.accessToken)
       }
-
-      res.send(token)
     } catch (e) {
       next()
       throw e
