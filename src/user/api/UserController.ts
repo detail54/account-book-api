@@ -114,8 +114,11 @@ export default class UserController {
         const refreshTokenKey = await this.rtkChangeService.register(signInUser)
 
         res.status(httpStatus.OK)
-        res.header('Set-Cookie', `Refresh-Key=${refreshTokenKey._id}; HttpOnly`)
-        res.send(accessToken)
+        res.header('Set-Cookie', [
+          `Refresh-Key=${refreshTokenKey._id}; HttpOnly`,
+          `Access-Token=${accessToken}; HttpOnly`,
+        ])
+        res.send({})
       }
     } catch (e) {
       next()
