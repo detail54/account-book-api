@@ -1,13 +1,10 @@
 export default class UserTokenDto {
-  public _id: string
+  public accessToken: string
 
-  public userName: string
+  public refreshTokenKey: string
 
-  public regDt: Date
-
-  constructor(id: string, userName: string, regDt: Date) {
-    this._id = id
-    this.userName = userName
-    this.regDt = regDt
+  constructor(accessToken: string, refreshTokenKey: string) {
+    this.accessToken = accessToken
+    this.refreshTokenKey = refreshTokenKey
   }
 }

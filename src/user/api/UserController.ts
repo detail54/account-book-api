@@ -1,16 +1,20 @@
 import { NextFunction, Request, Response } from 'express'
 import _ from 'lodash'
 import httpStatus from 'http-status-codes'
+import UserRegistDto from '../dto/UserRegistDto'
+import UserSignInDto from '../dto/UserSignInDto'
+import UserTokenDataDto from '../dto/UserTokenDataDto'
 import UserChangeService from '../service/UserChangeService'
 import UserRetireveService from '../service/UserRetireveService'
-import UserRegistDto from '../dto/UserRegistDto'
 import UserTokenService from '../service/UserTokenService'
-import UserSignInDto from '../dto/UserSignInDto'
+import RTKChangeService from '../../refresh-token/service/RTKChangeService'
+import JWToken from '../../core/utils/JWToken'
 
 export default class UserController {
   private userRetireveService: UserRetireveService = new UserRetireveService()
   private userChangeService: UserChangeService = new UserChangeService()
   private userTokenService: UserTokenService = new UserTokenService()
+  private rtkChangeService: RTKChangeService = new RTKChangeService()
 
   /**
    * -- 전체 사용자 리스트 조회 --
@@ -94,15 +98,24 @@ export default class UserController {
   public signIn = async (req: Request, res: Response, next: NextFunction): Promise<Response> => {
     try {
       const userInfo: UserSignInDto = req.body
-      const token = await this.userTokenService.signIn(userInfo)
+      const signInUser = await this.userTokenService.signIn(userInfo)
 
-      if (!token) {
-        res.status(httpStatus.NON_AUTHORITATIVE_INFORMATION)
+      if (!signInUser) {
+        res.status(httpStatus.UNAUTHORIZED)
         res.send()
       } else {
+        const tokenUserInfo: UserTokenDataDto = {
+          _id: signInUser._id,
+          userName: signInUser.userName,
+          regDt: signInUser.regDt,
+        }
+
+        const accessToken = await new JWToken().createAccessToken(tokenUserInfo)
+        const refreshTokenKey = await this.rtkChangeService.register(signInUser)
+
         res.status(httpStatus.OK)
-        res.header('Set-Cookie', `Refresh-Token=${token.refreshToken}; HttpOnly`)
-        res.send(token.accessToken)
+        res.header('Set-Cookie', `Refresh-Key=${refreshTokenKey._id}; HttpOnly`)
+        res.send(accessToken)
       }
     } catch (e) {
       next()
