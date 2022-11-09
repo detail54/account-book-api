@@ -1,4 +1,4 @@
-import jwt from 'jsonwebtoken'
+import jwt, { VerifyCallback } from 'jsonwebtoken'
 
 export default class JWToken {
   public createAccessToken = async (payload: object | string): Promise<string> => {
@@ -15,8 +15,12 @@ export default class JWToken {
     })
   }
 
-  public verify = async (token: string, type: 'atk' | 'rtk'): Promise<string | jwt.JwtPayload> => {
+  public verify = async (
+    token: string,
+    type: 'atk' | 'rtk',
+    callback?: VerifyCallback,
+  ): Promise<string | jwt.JwtPayload | void> => {
     const tokenSecretKey = type === 'atk' ? process.env.ACCESS_TOKEN_SECRET! : process.env.REFRESH_TOKEN_SECRET!
-    return jwt.verify(token, tokenSecretKey)
+    return jwt.verify(token, tokenSecretKey, callback)
   }
 }

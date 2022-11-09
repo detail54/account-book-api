@@ -6,14 +6,12 @@ import UserSignInDto from '../dto/UserSignInDto'
 import UserTokenDataDto from '../dto/UserTokenDataDto'
 import UserChangeService from '../service/UserChangeService'
 import UserRetireveService from '../service/UserRetireveService'
-import UserTokenService from '../service/UserTokenService'
 import RTKChangeService from '../../refresh-token/service/RTKChangeService'
 import JWToken from '../../core/utils/JWToken'
 
 export default class UserController {
   private userRetireveService: UserRetireveService = new UserRetireveService()
   private userChangeService: UserChangeService = new UserChangeService()
-  private userTokenService: UserTokenService = new UserTokenService()
   private rtkChangeService: RTKChangeService = new RTKChangeService()
 
   /**
@@ -98,11 +96,10 @@ export default class UserController {
   public signIn = async (req: Request, res: Response, next: NextFunction): Promise<Response> => {
     try {
       const userInfo: UserSignInDto = req.body
-      const signInUser = await this.userTokenService.signIn(userInfo)
+      const signInUser = await this.userRetireveService.signIn(userInfo)
 
       if (!signInUser) {
         res.status(httpStatus.UNAUTHORIZED)
-        res.send()
       } else {
         const tokenUserInfo: UserTokenDataDto = {
           _id: signInUser._id,
@@ -118,8 +115,8 @@ export default class UserController {
           `Refresh-Key=${refreshTokenKey._id}; HttpOnly`,
           `Access-Token=${accessToken}; HttpOnly`,
         ])
-        res.send({})
       }
+      res.end()
     } catch (e) {
       next()
       throw e
