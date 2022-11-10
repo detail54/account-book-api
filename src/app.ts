@@ -1,9 +1,11 @@
 import express, { Application } from 'express'
 import dotenv from 'dotenv'
-import cookieParser from 'cookie-parser'
 // DB 연결
 import DBConnection from './core/db/DBConnection'
+// 미들웨어
+import cookieParser from 'cookie-parser'
 import helmet from 'helmet'
+import AuthChecker from './core/middleware/AuthCheker'
 // router
 import UserRoutes from './core/routes/UserRoutes'
 import StoreCategoryRoutes from './core/routes/StoreCategoryRoutes'
@@ -28,7 +30,7 @@ export class App {
 
   public listen(): void {
     this.app.listen(this.port, () => {
-      console.info(`Server on ${this.port}`)
+      console.info(`Server on PORT: ${this.port}`)
     })
   }
 
@@ -36,6 +38,7 @@ export class App {
     this.app.use(helmet())
     this.app.use(express.json())
     this.app.use(cookieParser())
+    this.app.use(new AuthChecker().cheker)
   }
 
   private routes(): void {

@@ -5,11 +5,11 @@ export default class RTKDto {
 
   public token: string
 
-  public user: UserDto
+  public userId: string
 
-  constructor(id: string, token: string, user: UserDto) {
+  constructor(id: string, token: string, userId: string) {
     this._id = id
     this.token = token
-    this.user = user
+    this.userId = userId
   }
 }
