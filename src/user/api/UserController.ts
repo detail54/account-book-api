@@ -112,11 +112,11 @@ export default class UserController {
 
         res.status(httpStatus.OK)
         res.header('Set-Cookie', [
-          `Refresh-Key=${refreshTokenKey._id}; HttpOnly`,
-          `Access-Token=${accessToken}; HttpOnly`,
+          `Refresh-Key=${refreshTokenKey._id}; Path=/; HttpOnly`,
+          `Access-Token=${accessToken}; Path=/; HttpOnly`,
         ])
+        res.end()
       }
-      res.end()
     } catch (e) {
       next()
       throw e

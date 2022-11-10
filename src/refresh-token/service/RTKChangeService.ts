@@ -12,6 +12,6 @@ export default class RTKChangeService {
       await RTKRepository.deleteOne({ _id: retireveToken._id })
     }
 
-    return await RTKRepository.create({ token, user })
+    return await RTKRepository.create({ token, userId: user._id })
   }
 }

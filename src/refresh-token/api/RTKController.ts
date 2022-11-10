@@ -34,8 +34,8 @@ export default class RTKController {
             const setRes = (refreshTokenId: string): void => {
               res.status(httpStatus.OK)
               res.header('Set-Cookie', [
-                `Refresh-Key=${refreshTokenId}; HttpOnly`,
-                `Access-Token=${newAccessToken}; HttpOnly`,
+                `Refresh-Key=${refreshTokenId}; Path=/; HttpOnly`,
+                `Access-Token=${newAccessToken}; Path=/; HttpOnly`,
               ])
               res.end()
             }
