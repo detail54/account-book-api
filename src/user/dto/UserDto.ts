@@ -1,5 +1,5 @@
 import ExpenditureDto from 'src/expenditure/dto/ExpenditureDto'
-import IncomeDto from '../../income/dto/IncomeDto'
+import IncomeDto from 'src/income/dto/IncomeDto'
 
 /**
  * 유저 정보 Dto

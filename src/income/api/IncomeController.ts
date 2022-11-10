@@ -16,6 +16,7 @@ export default class IncomeController {
 
   public getList = async (req: Request, res: Response, next: NextFunction): Promise<Response> => {
     try {
+      console.log(res.locals)
       const user = await this.userRetireveService.get(req.params.userName)
 
       if (user) {

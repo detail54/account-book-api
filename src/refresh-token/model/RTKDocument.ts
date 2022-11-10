@@ -6,12 +6,12 @@ export default class RTKDocument extends Document {
 
   public token: String
 
-  public user: UserDto
+  public userId: String
 
-  constructor(id: string, token: string, user: UserDto) {
+  constructor(id: string, token: string, userId: string) {
     super()
     this.id = id
     this.token = token
-    this.user = user
+    this.userId = userId
   }
 }

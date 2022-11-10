@@ -14,7 +14,11 @@ export default class AuthChecker {
     try {
       const accessToken = req.cookies['Access-Token']
 
-      await this.jwt.verify(accessToken, 'atk')
+      await this.jwt.verify(accessToken, 'atk', async (err, decoded) => {
+        if (!err && decoded) {
+          res.locals.userId = JSON.parse(JSON.stringify(decoded.toString()))._id
+        }
+      })
       next()
     } catch (e) {
       res.status(httpStatus.UNAUTHORIZED)

@@ -6,7 +6,7 @@ class RTKSchema extends Schema<RTKDocument> {
     super({
       id: mongoose.Types.ObjectId,
       token: { type: String },
-      user: { type: Schema.Types.ObjectId, ref: 'User' },
+      userId: { type: Schema.Types.ObjectId, ref: 'User' },
     })
   }
 }

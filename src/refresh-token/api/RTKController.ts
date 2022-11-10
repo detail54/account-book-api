@@ -1,9 +1,11 @@
 import { NextFunction, Request, Response } from 'express'
 import httpStatus from 'http-status-codes'
+import UserTokenDataDto from 'src/user/dto/UserTokenDataDto'
 import RTKChangeService from '../service/RTKChangeService'
 import RTKRetireveService from '../service/RTKRetireveService'
-import UserRetireveService from '../../user/service/UserRetireveService'
-import JWToken from '../../core/utils/JWToken'
+import UserRetireveService from 'src/user/service/UserRetireveService'
+import JWToken from 'src/core/utils/JWToken'
+import UserDto from 'src/user/dto/UserDto'
 
 export default class RTKController {
   private jwt = new JWToken()
@@ -20,7 +22,14 @@ export default class RTKController {
       if (refreshTokenData) {
         try {
           await this.jwt.verify(refreshTokenData.token, 'rtk', async (err, decoded) => {
-            const newAccessToken = await this.jwt.createAccessToken(JSON.parse(JSON.stringify(refreshTokenData)))
+            const user = await this.userRetireveService.get(refreshTokenData.userId)
+            const userParseData: UserDto = JSON.parse(JSON.stringify(user))
+            const tokenUserInfo: UserTokenDataDto = {
+              _id: userParseData._id,
+              userName: userParseData.userName,
+              regDt: userParseData.regDt,
+            }
+            const newAccessToken = await this.jwt.createAccessToken(tokenUserInfo)
 
             const setRes = (refreshTokenId: string): void => {
               res.status(httpStatus.OK)
@@ -32,8 +41,7 @@ export default class RTKController {
             }
 
             if (err) {
-              const user = await this.userRetireveService.get(refreshTokenData.userId)
-              const newRefreshToken = await this.rtkChangeService.register(user!)
+              const newRefreshToken = await this.rtkChangeService.register(userParseData)
 
               setRes(newRefreshToken._id)
             } else {
