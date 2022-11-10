@@ -18,7 +18,7 @@ export default class RTKController {
 
       if (refreshTokenData) {
         try {
-          await this.jwt.verify(refreshTokenData.token, 'atk', async (err, decoded) => {
+          await this.jwt.verify(refreshTokenData.token, 'rtk', async (err, decoded) => {
             const newAccessToken = await this.jwt.createAccessToken(JSON.parse(JSON.stringify(refreshTokenData)))
 
             const setRes = (refreshTokenId: string): void => {
@@ -31,7 +31,6 @@ export default class RTKController {
             }
 
             if (err) {
-              console.log('err:::', err)
               const newRefreshToken = await this.rtkChangeService.register(refreshTokenData.user)
               setRes(newRefreshToken._id)
             } else {
