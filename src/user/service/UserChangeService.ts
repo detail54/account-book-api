@@ -1,4 +1,4 @@
-import EncryptPW from '../../core/utils/EncryptPW'
+import EncryptPW from 'src/core/utils/EncryptPW'
 import UserDto from '../dto/UserDto'
 import UserRegistDto from '../dto/UserRegistDto'
 import UserRepository from '../repository/UserRepository'

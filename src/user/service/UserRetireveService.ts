@@ -1,7 +1,7 @@
 import UserRepository from '../repository/UserRepository'
 import UserDto from '../dto/UserDto'
 import UserSignInDto from '../dto/UserSignInDto'
-import EncryptPW from '../../core/utils/EncryptPW'
+import EncryptPW from 'src/core/utils/EncryptPW'
 
 /**
  * 사용자 조회 서비스

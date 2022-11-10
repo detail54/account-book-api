@@ -1,5 +1,5 @@
-import JWToken from '../../core/utils/JWToken'
-import UserDto from '../../user/dto/UserDto'
+import JWToken from 'src/core/utils/JWToken'
+import UserDto from 'src/user/dto/UserDto'
 import RTKDocument from '../model/RTKDocument'
 import RTKRepository from '../repository/RTKRepository'
 

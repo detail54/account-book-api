@@ -1,4 +1,3 @@
-import UserRepository from 'src/user/repository/UserRepository'
 import ExpenditureRegistDto from '../dto/ExpenditureRegistDto'
 import ExpenditureRepository from '../repository/ExpenditureRepository'
 

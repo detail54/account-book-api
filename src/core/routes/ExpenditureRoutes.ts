@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import ExpenditureController from '../../expenditure/api/ExpenditureController'
+import ExpenditureController from 'src/expenditure/api/ExpenditureController'
 
 export default class ExpenditureRoutes {
   public router = Router()

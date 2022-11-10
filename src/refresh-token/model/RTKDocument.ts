@@ -1,5 +1,4 @@
 import { Document } from 'mongoose'
-import UserDto from 'src/user/dto/UserDto'
 
 export default class RTKDocument extends Document {
   public id: String

@@ -3,10 +3,10 @@ import _ from 'lodash'
 import httpStatus from 'http-status-codes'
 import IncomeRetireveService from '../service/IncomeRetireveService'
 import IncomeChangeService from '../service/IncomeChangeService'
-import UserRetireveService from '../../user/service/UserRetireveService'
-import MESSAGE from '../../core/constant/MESSAGE'
-import UserChangeService from '../../user/service/UserChangeService'
+import UserChangeService from 'src/user/service/UserChangeService'
+import UserRetireveService from 'src/user/service/UserRetireveService'
 import IncomeRegistDto from '../dto/IncomeRegistDto'
+import MESSAGE from 'src/core/constant/MESSAGE'
 
 export default class IncomeController {
   private incomeRetireveService: IncomeRetireveService = new IncomeRetireveService()

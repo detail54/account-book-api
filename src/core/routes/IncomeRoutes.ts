@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import IncomeController from '../../income/api/IncomeController'
+import IncomeController from 'src/income/api/IncomeController'
 
 export default class IncomeRoutes {
   public router = Router()

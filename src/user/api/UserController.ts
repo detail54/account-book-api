@@ -6,8 +6,8 @@ import UserSignInDto from '../dto/UserSignInDto'
 import UserTokenDataDto from '../dto/UserTokenDataDto'
 import UserChangeService from '../service/UserChangeService'
 import UserRetireveService from '../service/UserRetireveService'
-import RTKChangeService from '../../refresh-token/service/RTKChangeService'
-import JWToken from '../../core/utils/JWToken'
+import RTKChangeService from 'src/refresh-token/service/RTKChangeService'
+import JWToken from 'src/core/utils/JWToken'
 
 export default class UserController {
   private userRetireveService: UserRetireveService = new UserRetireveService()

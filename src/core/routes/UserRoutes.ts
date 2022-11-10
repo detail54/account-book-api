@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import UserController from '../../user/api/UserController'
+import UserController from 'src/user/api/UserController'
 
 export default class UserRoutes {
   public router = Router()

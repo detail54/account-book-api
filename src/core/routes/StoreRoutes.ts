@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import StoreController from '../../store/api/StoreController'
+import StoreController from 'src/store/api/StoreController'
 
 export default class StoreRoutes {
   public router = Router()

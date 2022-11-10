@@ -1,5 +1,3 @@
-import UserDto from '../../user/dto/UserDto'
-
 export default class RTKDto {
   public _id: string
 

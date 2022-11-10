@@ -1,4 +1,4 @@
-import UserDto from '../../user/dto/UserDto'
+import UserDto from 'src/user/dto/UserDto'
 
 export default class IncomeDto {
   public _id: string

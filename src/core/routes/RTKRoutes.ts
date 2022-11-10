@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import RTKController from '../../refresh-token/api/RTKController'
+import RTKController from 'src/refresh-token/api/RTKController'
 
 export default class RTKRoutes {
   public router = Router()

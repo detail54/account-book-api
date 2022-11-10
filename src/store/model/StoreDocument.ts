@@ -1,4 +1,5 @@
 import { Document } from 'mongoose'
+import ExpenditureDto from 'src/expenditure/dto/ExpenditureDto'
 import StoreCategoryDto from 'src/store-category/dto/StoreCategoryDto'
 
 export default class StoreDocument extends Document {
@@ -8,7 +9,7 @@ export default class StoreDocument extends Document {
 
   public name: String
 
-  public expenditures: []
+  public expenditures: ExpenditureDto[]
 
   constructor(id: string, category: StoreCategoryDto, name: string, expenditures: []) {
     super()

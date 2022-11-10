@@ -1,5 +1,5 @@
 import { Document } from 'mongoose'
-import UserDto from '../../user/dto/UserDto'
+import UserDto from 'src/user/dto/UserDto'
 
 export default class IncomeDocument extends Document {
   public id: String

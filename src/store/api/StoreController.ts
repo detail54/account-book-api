@@ -3,8 +3,8 @@ import _ from 'lodash'
 import httpStatus from 'http-status-codes'
 import StoreChangeService from '../service/StoreChangeService'
 import StoreRetireveService from '../service/StoreRetireveService'
-import StoreCategoryRetireveService from '../../store-category/service/StoreCategoryRetireveService'
-import StoreCategoryChangeService from '../../store-category/service/StoreCategoryChangeService'
+import StoreCategoryChangeService from 'src/store-category/service/StoreCategoryChangeService'
+import StoreCategoryRetireveService from 'src/store-category/service/StoreCategoryRetireveService'
 import StoreRegistDto from '../dto/StoreRegistDto'
 
 export default class StoreController {
