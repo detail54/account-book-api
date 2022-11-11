@@ -16,10 +16,6 @@ export default class UserDocument extends Document {
 
   public keyCount: String
 
-  public incomes: IncomeDto[]
-
-  public expenditures: ExpenditureDto[]
-
   public regDt: Date
 
   public updateDt: Date
@@ -30,8 +26,6 @@ export default class UserDocument extends Document {
     password: string,
     salt: string,
     keyCount: string,
-    incomes: [],
-    expenditures: [],
     regDt: Date,
     updateDt: Date,
   ) {
@@ -41,8 +35,6 @@ export default class UserDocument extends Document {
     this.password = password
     this.salt = salt
     this.keyCount = keyCount
-    this.incomes = incomes
-    this.expenditures = expenditures
     this.regDt = regDt
     this.updateDt = updateDt
   }

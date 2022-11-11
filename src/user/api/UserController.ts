@@ -124,4 +124,28 @@ export default class UserController {
 
     return res
   }
+
+  /**
+   * -- 유저 삭제 --
+   * @param req
+   * @param res
+   * @param next
+   * @returns
+   */
+  public delete = async (req: Request, res: Response, next: NextFunction): Promise<Response> => {
+    try {
+      await this.userChangeService.delete(res.locals.userId)
+      await this.rtkChangeService.delete(res.locals.refreshKey)
+
+      res.status(httpStatus.OK)
+      res.clearCookie('Access-Token')
+      res.clearCookie('Refresh-Key')
+      res.end()
+    } catch (e) {
+      next()
+      throw e
+    }
+
+    return res
+  }
 }

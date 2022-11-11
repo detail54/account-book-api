@@ -22,8 +22,6 @@ export default class UserChangeService {
       password: encryptPW,
       salt,
       keyCount: count,
-      incomes: [],
-      accounts: [],
       regDt: date,
       updateDt: date,
     })
@@ -35,5 +33,9 @@ export default class UserChangeService {
       ...updateUser,
       updateDt: new Date(),
     })
+  }
+
+  public delete = async (_id: string): Promise<void> => {
+    await UserRepository.deleteOne({ _id })
   }
 }

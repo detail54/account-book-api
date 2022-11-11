@@ -11,19 +11,15 @@ export default class StoreDto {
 
   public name: string
 
-  public expenditures: ExpenditureDto[]
-
   /**
    *
    * @param id 가맹점 식별 id
    * @param category 가맹점 카테고리 정보
    * @param name 가맹점 명
-   * @param accounts 가맹점 지출 내역 리스트
    */
-  constructor(id: string, category: StoreCategoryDto, name: string, expenditures: ExpenditureDto[]) {
+  constructor(id: string, category: StoreCategoryDto, name: string) {
     this._id = id
     this.category = category
     this.name = name
-    this.expenditures = expenditures
   }
 }

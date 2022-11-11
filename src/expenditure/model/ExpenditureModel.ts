@@ -1,7 +1,7 @@
-import mongoose, { Schema } from 'mongoose'
+import mongoose, { CallbackWithoutResultAndOptionalError, Schema } from 'mongoose'
 import ExpenditureDocument from './ExpenditureDocument'
 
-class ExpenditureSchema extends Schema<ExpenditureDocument> {
+class ExpenditureSchema extends Schema {
   constructor() {
     super({
       id: mongoose.Types.ObjectId,
@@ -17,4 +17,4 @@ class ExpenditureSchema extends Schema<ExpenditureDocument> {
   }
 }
 
-export default mongoose.model('Expenditure', new ExpenditureSchema())
+export default mongoose.model<ExpenditureDocument>('Expenditure', new ExpenditureSchema())

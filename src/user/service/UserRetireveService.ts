@@ -42,8 +42,6 @@ export default class UserRetireveService {
           retireveUser.password.toString(),
           retireveUser.salt.toString(),
           retireveUser.keyCount.toString(),
-          retireveUser.incomes,
-          retireveUser.expenditures,
           retireveUser.regDt,
           retireveUser.updateDt,
         )

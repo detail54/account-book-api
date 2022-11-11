@@ -14,4 +14,8 @@ export default class RTKChangeService {
 
     return await RTKRepository.create({ token, userId: user._id })
   }
+
+  public delete = async (_id: string): Promise<void> => {
+    await RTKRepository.deleteOne({ _id })
+  }
 }

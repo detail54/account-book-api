@@ -53,25 +53,11 @@ export default class StoreController {
 
   public register = async (req: Request, res: Response, next: NextFunction): Promise<Response> => {
     try {
-      const retirevedCategory = await this.storeCategoryRetireveService.get(req.body.categoryName)
-
-      if (_.isEmpty(retirevedCategory)) {
-        await this.storeCategoryChangeService.register(req.body.categoryName)
-      }
-
       const category = await this.storeCategoryRetireveService.get(req.body.categoryName)
 
       if (category) {
         const registStoreData: StoreRegistDto = { ...req.body, category }
         await this.storeChangeService.register(registStoreData)
-
-        const store = await this.storeRetireveService.get(registStoreData.name)
-
-        if (store) {
-          category.stores.push(store)
-        }
-
-        await this.storeCategoryChangeService.updater(category)
       }
     } catch (e) {
       next()

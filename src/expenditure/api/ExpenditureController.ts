@@ -49,7 +49,7 @@ export default class ExpenditureController {
 
   public register = async (req: Request, res: Response, next: NextFunction): Promise<Response> => {
     try {
-      const user = await this.userRetireveService.get(req.body.userName)
+      const user = await this.userRetireveService.get(res.locals.userId)
 
       if (user) {
         let category = await this.storeCategoryRetireveService.get(req.body.categoryName)
@@ -58,7 +58,6 @@ export default class ExpenditureController {
         if (!category) {
           await this.storeCategoryChangeService.register({
             name: req.body.categoryName,
-            stores: [],
           })
 
           category = await this.storeCategoryRetireveService.get(req.body.categoryName)
@@ -74,11 +73,6 @@ export default class ExpenditureController {
         }
 
         if (category && store) {
-          if (!category.stores.find((storeData) => storeData.name === store?.name)) {
-            category.stores.push(store)
-            await this.storeCategoryChangeService.updater(category)
-          }
-
           await this.expenditureChangeService.register({
             user,
             category,
@@ -87,16 +81,6 @@ export default class ExpenditureController {
             amount: req.body.amount,
             memo: req.body.memo,
           })
-
-          const expenditure = await this.expenditureRetireveService.get(user, store, req.body.paymentDt)
-
-          if (expenditure) {
-            store.expenditures.push(expenditure)
-            user.expenditures.push(expenditure)
-          }
-
-          await this.storeChangeService.updater(store)
-          await this.userChangeService.updater(user)
         }
       } else {
         res.status(httpStatus.NOT_FOUND)

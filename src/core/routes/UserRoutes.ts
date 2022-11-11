@@ -12,7 +12,7 @@ export default class UserRoutes {
   }
 
   private rootRouter = () => {
-    this.router.route('/').get(this.controller.getList).post(this.controller.register)
+    this.router.route('/').get(this.controller.getList).post(this.controller.register).delete(this.controller.delete)
   }
 
   private idPathRouter = () => {

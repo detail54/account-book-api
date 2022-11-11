@@ -15,10 +15,6 @@ export default class UserDto {
 
   public keyCount: string
 
-  public incomes: IncomeDto[]
-
-  public expenditures: ExpenditureDto[]
-
   public regDt: Date
 
   public updateDt: Date
@@ -40,8 +36,6 @@ export default class UserDto {
     password: string,
     salt: string,
     keyCount: string,
-    incomes: IncomeDto[],
-    expenditures: ExpenditureDto[],
     regDt: Date,
     updateDt: Date,
   ) {
@@ -50,8 +44,6 @@ export default class UserDto {
     this.password = password
     this.salt = salt
     this.keyCount = keyCount
-    this.incomes = incomes
-    this.expenditures = expenditures
     this.regDt = regDt
     this.updateDt = updateDt
   }

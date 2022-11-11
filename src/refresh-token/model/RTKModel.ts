@@ -1,7 +1,7 @@
 import mongoose, { Schema } from 'mongoose'
 import RTKDocument from './RTKDocument'
 
-class RTKSchema extends Schema<RTKDocument> {
+class RTKSchema extends Schema {
   constructor() {
     super({
       id: mongoose.Types.ObjectId,
@@ -11,4 +11,4 @@ class RTKSchema extends Schema<RTKDocument> {
   }
 }
 
-export default mongoose.model('RTK', new RTKSchema())
+export default mongoose.model<RTKDocument>('RTK', new RTKSchema())

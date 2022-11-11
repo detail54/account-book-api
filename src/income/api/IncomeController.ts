@@ -54,11 +54,6 @@ export default class IncomeController {
         }
 
         await this.incomeChangeService.register(registIncomeData)
-
-        const incomes = await this.incomeRetireveService.getList(user)
-        user.incomes = incomes
-
-        await this.userChangeService.updater(user)
       }
     } catch (e) {
       next()

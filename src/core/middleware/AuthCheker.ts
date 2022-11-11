@@ -8,7 +8,10 @@ export default class AuthChecker {
   public cheker = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     const ignorePath = ['user', 'refresh']
     if (ignorePath.includes(req.path.split('/')[2])) {
-      return next()
+      if (req.path.split('/')[2] === 'user' && req.method === 'DELETE') {
+      } else {
+        return next()
+      }
     }
 
     try {
@@ -16,7 +19,8 @@ export default class AuthChecker {
 
       await this.jwt.verify(accessToken, 'atk', async (err, decoded) => {
         if (!err && decoded) {
-          res.locals.userId = JSON.parse(JSON.stringify(decoded.toString()))._id
+          res.locals.userId = JSON.parse(JSON.stringify(decoded))._id
+          res.locals.refreshKey = req.cookies['Refresh-Key']
         }
       })
       next()

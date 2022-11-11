@@ -10,15 +10,9 @@ export default class StoreCategoryDocument extends Document {
 
   public name: String
 
-  public stores: StoreDto[]
-
-  public expenditures: ExpenditureDto[]
-
-  constructor(id: string, name: string, stores: [], expenditures: []) {
+  constructor(id: string, name: string) {
     super()
     this.id = id
     this.name = name
-    this.stores = stores
-    this.expenditures = expenditures
   }
 }

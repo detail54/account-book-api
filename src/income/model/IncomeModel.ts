@@ -1,7 +1,7 @@
 import mongoose, { Schema } from 'mongoose'
 import IncomeDocument from './IncomeDocument'
 
-class IncomeSchema extends Schema<IncomeDocument> {
+class IncomeSchema extends Schema {
   constructor() {
     super({
       id: mongoose.Types.ObjectId,
@@ -15,4 +15,4 @@ class IncomeSchema extends Schema<IncomeDocument> {
   }
 }
 
-export default mongoose.model('Income', new IncomeSchema())
+export default mongoose.model<IncomeDocument>('Income', new IncomeSchema())
